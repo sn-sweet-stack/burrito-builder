@@ -4,12 +4,15 @@ import { Ingredient } from '../pages/burrito.page';
 import { BurritoNameInput } from './burito-name-input.component';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useAuth } from '../libs/firebase';
+import { User } from 'firebase/auth';
 
 interface Props {
   burrito: Burrito;
   removeIngredient: (ingredient: Ingredient) => void;
   setBurritoName: (name: string) => void;
   submitBurrito: (burrito: Burrito, userId: string) => Promise<void>;
+  resetBurrito: () => void;
+  user: User | null | undefined;
 }
 
 export const BurritoInfo: FC<Props> = ({
@@ -17,9 +20,10 @@ export const BurritoInfo: FC<Props> = ({
   removeIngredient,
   setBurritoName,
   submitBurrito,
+  resetBurrito,
+  user,
 }) => {
   const auth = useAuth();
-  const [user, loading, error] = useAuthState(auth);
   return (
     <div>
       {burrito.name ? (
@@ -38,7 +42,14 @@ export const BurritoInfo: FC<Props> = ({
         </ul>
       )}
       <p>Total price:{burrito.price.toFixed(2) + '$'}</p>
-      <button onClick={() => submitBurrito(burrito, user?.uid)}>
+      <button
+        onClick={() => {
+          if (user) {
+            submitBurrito(burrito, user.uid);
+          }
+          resetBurrito();
+        }}
+      >
         Submit burrito
       </button>
     </div>

@@ -41,9 +41,9 @@ export const useBurrito = () => {
     });
   };
 
-  const removeAllIngredients = () => {
+  const resetBurrito = () => {
     setBurrito({
-      ...burrito,
+      name: '',
       ingredients: [],
       price: 0,
     });
@@ -61,7 +61,7 @@ export const useBurrito = () => {
     setBurritoName,
     addIngredient,
     removeIngredient,
-    removeAllIngredients,
+    resetBurrito,
     submitBurrito,
   };
 };

@@ -1,31 +1,24 @@
-import { ChangeEvent, FC, KeyboardEvent, useState } from 'react';
+import { FC, KeyboardEvent, useRef } from 'react';
 
 interface Props {
   setBurritoName: (name: string) => void;
 }
 
 export const BurritoNameInput: FC<Props> = ({ setBurritoName }) => {
-  const [name, setName] = useState('');
-  const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target) {
-      setName(event.target.value);
-    }
-  };
+  const inputRef = useRef<HTMLInputElement>(null);
   const handleNameSubmit = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      setBurritoName(name);
+    if (event.key === 'Enter' && inputRef.current) {
+      setBurritoName(inputRef.current.value);
+      inputRef.current.value = '';
       return;
     }
+
     return;
   };
   return (
     <div>
       <h1>Choose name for your burrito</h1>
-      <input
-        value={name}
-        onChange={handleNameChange}
-        onKeyDown={handleNameSubmit}
-      />
+      <input ref={inputRef} onKeyDown={handleNameSubmit} />
     </div>
   );
 };

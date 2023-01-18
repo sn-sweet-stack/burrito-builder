@@ -1,10 +1,12 @@
 import { createCheckoutSession } from '@stripe/firestore-stripe-payments';
 import { useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import SignOutButton from '../components/Auth/sign-out-button.component';
 import { BurritoInfo } from '../components/burrito-info.component';
 import IngredientList from '../components/ingredient-list.component';
 import { useBurrito } from '../hooks/useBurito';
 import { useIngredients } from '../hooks/useIngredients';
+import { useIsAuth } from '../hooks/useIsAuth';
 import { payments } from '../libs/firebase';
 
 export interface Ingredient {
@@ -20,9 +22,10 @@ const BurritoPage = () => {
     setBurritoName,
     addIngredient,
     removeIngredient,
-    removeAllIngredients,
+    resetBurrito,
     submitBurrito,
   } = useBurrito();
+  const { user } = useIsAuth();
 
   return (
     <section>
@@ -40,6 +43,8 @@ const BurritoPage = () => {
           removeIngredient={removeIngredient}
           setBurritoName={setBurritoName}
           submitBurrito={submitBurrito}
+          resetBurrito={resetBurrito}
+          user={user}
         />
       </div>
       <SignOutButton />

@@ -1,13 +1,17 @@
 import { FC } from 'react';
-import { useAuth } from '../../libs/firebase';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignIn } from '../../hooks/useSignIn';
 
 const SignInButton: FC = () => {
-  const auth = useAuth();
-  const [signInWithGoogle, loading, error] = useSignInWithGoogle(auth);
+  const { signInWithGoogle, loading, error } = useSignIn('/burrito');
   return (
     <div>
-      <button onClick={() => signInWithGoogle()}>Sign in with Google</button>
+      <button
+        onClick={() => {
+          signInWithGoogle();
+        }}
+      >
+        Sign in with Google
+      </button>
     </div>
   );
 };
