@@ -1,4 +1,6 @@
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
+import { useFirestore } from '../libs/firebase';
 import { Ingredient } from '../pages/burrito.page';
 
 export interface Burrito {
@@ -8,6 +10,7 @@ export interface Burrito {
 }
 
 export const useBurrito = () => {
+  const storage = useFirestore();
   const [burrito, setBurrito] = useState<Burrito>({
     name: '',
     ingredients: [],
@@ -46,11 +49,19 @@ export const useBurrito = () => {
     });
   };
 
+  const submitBurrito = async (burrito: Burrito, userId: string) => {
+    await addDoc(collection(storage, 'burritos'), {
+      ...burrito,
+      userId,
+    });
+  };
+
   return {
     burrito,
     setBurritoName,
     addIngredient,
     removeIngredient,
     removeAllIngredients,
+    submitBurrito,
   };
 };

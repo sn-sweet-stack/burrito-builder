@@ -21,6 +21,7 @@ const BurritoPage = () => {
     addIngredient,
     removeIngredient,
     removeAllIngredients,
+    submitBurrito,
   } = useBurrito();
 
   return (
@@ -38,6 +39,7 @@ const BurritoPage = () => {
           burrito={burrito}
           removeIngredient={removeIngredient}
           setBurritoName={setBurritoName}
+          submitBurrito={submitBurrito}
         />
       </div>
       <SignOutButton />
