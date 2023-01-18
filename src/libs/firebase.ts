@@ -1,3 +1,4 @@
+import { getStripePayments } from '@stripe/firestore-stripe-payments';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import { Auth, getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
@@ -28,3 +29,8 @@ export const useFirestore = () => {
 
   return firestore;
 };
+
+export const payments = getStripePayments(firebaseApp, {
+  productsCollection: 'products',
+  customersCollection: 'customers',
+});
