@@ -1,9 +1,10 @@
 import { FC } from 'react';
+import { BurritoIngredient } from '../hooks/useBurito';
 import { Ingredient } from '../pages/burrito.page';
 
 interface Props {
   ingredient: Ingredient;
-  addIngredient: (ingredient: Ingredient) => void;
+  addIngredient: (ingredient: BurritoIngredient) => void;
 }
 
 const IngredientItem: FC<Props> = ({ ingredient, addIngredient }) => {
@@ -11,7 +12,16 @@ const IngredientItem: FC<Props> = ({ ingredient, addIngredient }) => {
     <div>
       <h1>{ingredient.name}</h1>
       <p>{ingredient.price + '$'}</p>
-      <button onClick={() => addIngredient(ingredient)}>+</button>
+      <button
+        onClick={() =>
+          addIngredient({
+            ingredient,
+            quantity: 1,
+          })
+        }
+      >
+        +
+      </button>
     </div>
   );
 };

@@ -1,10 +1,11 @@
 import { FC } from 'react';
+import { BurritoIngredient } from '../hooks/useBurito';
 import { Ingredient } from '../pages/burrito.page';
 import IngredientItem from './ingredient-item.component';
 
 interface Props {
   ingredients: Ingredient[];
-  addIngredient: (ingredient: Ingredient) => void;
+  addIngredient: (ingredient: BurritoIngredient) => void;
 }
 
 export const IngredientList: FC<Props> = ({ ingredients, addIngredient }) => {

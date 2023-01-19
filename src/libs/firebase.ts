@@ -1,5 +1,5 @@
 import { getStripePayments } from '@stripe/firestore-stripe-payments';
-import { FirebaseApp, initializeApp } from 'firebase/app';
+import { initializeApp } from 'firebase/app';
 import { Auth, getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
@@ -18,7 +18,6 @@ let firestore: ReturnType<typeof getFirestore>;
 
 export const useAuth = () => {
   auth = getAuth(firebaseApp);
-
   return auth;
 };
 

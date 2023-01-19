@@ -1,14 +1,14 @@
 import { FC } from 'react';
-import { Burrito } from '../hooks/useBurito';
-import { Ingredient } from '../pages/burrito.page';
+import { Burrito, BurritoIngredient } from '../hooks/useBurito';
 import { BurritoNameInput } from './burito-name-input.component';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useAuth } from '../libs/firebase';
 import { User } from 'firebase/auth';
+import { Ingredient } from '../pages/burrito.page';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   burrito: Burrito;
-  removeIngredient: (ingredient: Ingredient) => void;
+  removeIngredient: (ingredient: BurritoIngredient) => void;
+  addIngredient: (Ingredient: BurritoIngredient) => void;
   setBurritoName: (name: string) => void;
   submitBurrito: (burrito: Burrito, userId: string) => Promise<void>;
   resetBurrito: () => void;
@@ -18,12 +18,13 @@ interface Props {
 export const BurritoInfo: FC<Props> = ({
   burrito,
   removeIngredient,
+  addIngredient,
   setBurritoName,
   submitBurrito,
   resetBurrito,
   user,
 }) => {
-  const auth = useAuth();
+  const navigate = useNavigate();
   return (
     <div>
       {burrito.name ? (
@@ -34,9 +35,30 @@ export const BurritoInfo: FC<Props> = ({
       {!!burrito.ingredients.length && (
         <ul>
           {burrito.ingredients.map((ingredient) => (
-            <li key={ingredient.id} className="flex gap-3">
-              <p>{ingredient.name}</p>
-              <button onClick={() => removeIngredient(ingredient)}>-</button>
+            <li key={ingredient.ingredient.id} className="flex gap-3">
+              <p>{ingredient.ingredient.name}</p>
+              <button
+                onClick={() =>
+                  addIngredient({
+                    ...ingredient,
+                    quantity: 1,
+                  })
+                }
+                disabled={ingredient.quantity > 4}
+              >
+                +
+              </button>
+              <p>{ingredient.quantity}</p>
+              <button
+                onClick={() =>
+                  removeIngredient({
+                    ...ingredient,
+                    quantity: 1,
+                  })
+                }
+              >
+                -
+              </button>
             </li>
           ))}
         </ul>
@@ -48,9 +70,10 @@ export const BurritoInfo: FC<Props> = ({
             submitBurrito(burrito, user.uid);
           }
           resetBurrito();
+          navigate('/checkout');
         }}
       >
-        Submit burrito
+        Checkout
       </button>
     </div>
   );

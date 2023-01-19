@@ -41,6 +41,7 @@ const BurritoPage = () => {
         <BurritoInfo
           burrito={burrito}
           removeIngredient={removeIngredient}
+          addIngredient={addIngredient}
           setBurritoName={setBurritoName}
           submitBurrito={submitBurrito}
           resetBurrito={resetBurrito}

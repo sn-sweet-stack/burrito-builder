@@ -18,5 +18,6 @@ export const useIsAuth = () => {
   return {
     isAuth,
     user,
+    loading,
   };
 };
