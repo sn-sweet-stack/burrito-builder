@@ -1,7 +1,13 @@
 import { getStripePayments } from '@stripe/firestore-stripe-payments';
 import { initializeApp } from 'firebase/app';
-import { Auth, getAuth } from 'firebase/auth';
+import {
+  Auth,
+  browserSessionPersistence,
+  getAuth,
+  setPersistence,
+} from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { getFunctions } from 'firebase/functions';
 
 const firebaseApp = initializeApp({
   apiKey: import.meta.env.VITE_FIREBASE_APIKEY,
@@ -13,13 +19,10 @@ const firebaseApp = initializeApp({
   appId: import.meta.env.VITE_FIREBASE_APPID,
 });
 
-let auth: Auth;
 let firestore: ReturnType<typeof getFirestore>;
 
-export const useAuth = () => {
-  auth = getAuth(firebaseApp);
-  return auth;
-};
+export const auth = getAuth(firebaseApp);
+setPersistence(auth, browserSessionPersistence);
 
 export const useFirestore = () => {
   if (!firestore) {
@@ -28,6 +31,8 @@ export const useFirestore = () => {
 
   return firestore;
 };
+
+export const functions = getFunctions(firebaseApp, 'europe-central2');
 
 export const payments = getStripePayments(firebaseApp, {
   productsCollection: 'products',

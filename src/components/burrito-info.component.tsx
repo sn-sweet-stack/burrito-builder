@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { Burrito, BurritoIngredient } from '../hooks/useBurito';
 import { BurritoNameInput } from './burito-name-input.component';
 import { User } from 'firebase/auth';
-import { Ingredient } from '../pages/burrito.page';
 import { useNavigate } from 'react-router-dom';
 
 interface Props {
