@@ -10,15 +10,16 @@ export const BurritoNameInput: FC<Props> = ({ setBurritoName }) => {
     if (event.key === 'Enter' && inputRef.current) {
       setBurritoName(inputRef.current.value);
       inputRef.current.value = '';
-      return;
     }
-
-    return;
   };
   return (
     <div>
-      <h1>Choose name for your burrito</h1>
-      <input ref={inputRef} onKeyDown={handleNameSubmit} />
+      <input
+        className="placeholder: rounded-2xl border border-amber-500 p-1 placeholder-gray-500 outline-none placeholder:font-light"
+        placeholder="Choose name..."
+        ref={inputRef}
+        onKeyDown={handleNameSubmit}
+      />
     </div>
   );
 };

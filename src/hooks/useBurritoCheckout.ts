@@ -47,8 +47,8 @@ export const useBurritoCheckout = () => {
           window.location.assign(sessionUrl);
         }
       }
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   };
 

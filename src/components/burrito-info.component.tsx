@@ -3,6 +3,7 @@ import { Burrito, BurritoIngredient } from '../hooks/useBurito';
 import { BurritoNameInput } from './burito-name-input.component';
 import { User } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { SelectedIngredeintsList } from './selected-ingredient-list.component';
 
 interface Props {
   burrito: Burrito;
@@ -26,54 +27,43 @@ export const BurritoInfo: FC<Props> = ({
   const navigate = useNavigate();
   return (
     <div>
-      {burrito.name ? (
-        <h1>{burrito.name}</h1>
-      ) : (
-        <BurritoNameInput setBurritoName={setBurritoName} />
-      )}
-      {!!burrito.ingredients.length && (
-        <ul>
-          {burrito.ingredients.map((ingredient) => (
-            <li key={ingredient.ingredient.id} className="flex gap-3">
-              <p>{ingredient.ingredient.name}</p>
-              <button
-                onClick={() =>
-                  addIngredient({
-                    ...ingredient,
-                    quantity: 1,
-                  })
-                }
-                disabled={ingredient.quantity > 4}
-              >
-                +
-              </button>
-              <p>{ingredient.quantity}</p>
-              <button
-                onClick={() =>
-                  removeIngredient({
-                    ...ingredient,
-                    quantity: 1,
-                  })
-                }
-              >
-                -
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-      <p>Total price:{burrito.price.toFixed(2) + '$'}</p>
-      <button
-        onClick={() => {
-          if (user) {
-            submitBurrito(burrito, user.uid);
-          }
-          resetBurrito();
-          navigate('/checkout');
-        }}
-      >
-        Checkout
-      </button>
+      <div className="mb-3 flex h-24 items-center justify-center gap-2">
+        <div className="w-48">
+          {burrito.name ? (
+            <h1
+              aria-label="Change name on double click"
+              onDoubleClick={() => setBurritoName('')}
+            >
+              {burrito.name}
+            </h1>
+          ) : (
+            <BurritoNameInput setBurritoName={setBurritoName} />
+          )}
+        </div>
+
+        <button
+          className="rounded-2xl border border-amber-500 p-1"
+          onClick={() => {
+            if (user) {
+              submitBurrito(burrito, user.uid);
+            }
+            resetBurrito();
+            navigate('/checkout');
+          }}
+        >
+          Checkout
+        </button>
+      </div>
+      <p>Total price:{' ' + burrito.price.toFixed(2) + '$'}</p>
+      <div>
+        {!!burrito.ingredients.length && (
+          <SelectedIngredeintsList
+            burrito={burrito}
+            addIngredient={addIngredient}
+            removeIngredient={removeIngredient}
+          />
+        )}
+      </div>
     </div>
   );
 };

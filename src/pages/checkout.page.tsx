@@ -1,9 +1,10 @@
 import { FC } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import BurritoCheckout from '../components/burrito-checkout.component';
-import { useHttpsCallable } from 'react-firebase-hooks/functions';
-import { getFunctions } from 'firebase/functions';
 
 export const CheckoutPage: FC = () => {
+  const user = useLoaderData();
+  console.log(user);
   return (
     <div>
       <BurritoCheckout />

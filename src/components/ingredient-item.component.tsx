@@ -9,20 +9,18 @@ interface Props {
 
 const IngredientItem: FC<Props> = ({ ingredient, addIngredient }) => {
   return (
-    <div>
+    <button
+      className="flex gap-1 rounded-3xl border p-1 hover:border-yellow-500"
+      onClick={() =>
+        addIngredient({
+          ingredient,
+          quantity: 1,
+        })
+      }
+    >
       <h1>{ingredient.name}</h1>
       <p>{ingredient.price + '$'}</p>
-      <button
-        onClick={() =>
-          addIngredient({
-            ingredient,
-            quantity: 1,
-          })
-        }
-      >
-        +
-      </button>
-    </div>
+    </button>
   );
 };
 

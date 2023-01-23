@@ -10,7 +10,7 @@ interface Props {
 
 export const IngredientList: FC<Props> = ({ ingredients, addIngredient }) => {
   return (
-    <ul>
+    <ul className="flex max-w-[600px] flex-wrap gap-3">
       {ingredients.map((ingredient) => (
         <li key={ingredient.id}>
           <IngredientItem
