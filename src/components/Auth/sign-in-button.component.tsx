@@ -3,6 +3,9 @@ import { useSignIn } from '../../hooks/useSignIn';
 
 const SignInButton: FC = () => {
   const { signInWithGoogle, loading, error } = useSignIn('/burrito');
+  if (loading) {
+    return <p>Loading</p>;
+  }
   return (
     <div>
       <button

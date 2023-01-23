@@ -1,6 +1,12 @@
 import { getStripePayments } from '@stripe/firestore-stripe-payments';
 import { initializeApp } from 'firebase/app';
 import {
+  getMessaging,
+  getToken,
+  MessagePayload,
+  onMessage,
+} from 'firebase/messaging';
+import {
   Auth,
   browserSessionPersistence,
   getAuth,
@@ -8,6 +14,7 @@ import {
 } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getFunctions } from 'firebase/functions';
+import { Payload } from '../hooks/useNotification';
 
 const firebaseApp = initializeApp({
   apiKey: import.meta.env.VITE_FIREBASE_APIKEY,
@@ -20,6 +27,20 @@ const firebaseApp = initializeApp({
 });
 
 let firestore: ReturnType<typeof getFirestore>;
+
+export const messaging = getMessaging(firebaseApp);
+getToken(messaging, {
+  vapidKey:
+    'BArzvbb7biSDqwBdBYwAuV6BB3tomAVrf1wzkEOHcaC8mROZsD5tDLlPs7dlmIDoKRqCkYlIHboiKlP49bDjWXc',
+});
+
+export const onMessageListener = () =>
+  new Promise<MessagePayload>((resolve) => {
+    onMessage(messaging, (payload) => {
+      console.log('payload', payload);
+      resolve(payload);
+    });
+  });
 
 export const auth = getAuth(firebaseApp);
 setPersistence(auth, browserSessionPersistence);
