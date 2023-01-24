@@ -1,5 +1,6 @@
 import { FC } from 'react';
-import { Burrito, BurritoIngredient } from '../hooks/useBurito';
+import { Burrito, BurritoIngredient } from '../types/interfaces';
+import { SelectedIngredientItem } from './selected-ingredient-item.component';
 
 interface Props {
   burrito: Burrito;
@@ -14,35 +15,14 @@ export const SelectedIngredeintsList: FC<Props> = ({
 }) => {
   return (
     <div>
-      <ul>
+      <ul className="flex flex-col gap-3">
         {burrito.ingredients.map((ingredient) => (
-          <li key={ingredient.ingredient.id} className="flex gap-3">
-            <p>{ingredient.ingredient.name}</p>
-            <button
-              aria-label="Add ingredient"
-              onClick={() =>
-                addIngredient({
-                  ...ingredient,
-                  quantity: 1,
-                })
-              }
-              disabled={ingredient.quantity > 4}
-            >
-              +
-            </button>
-            <p>{ingredient.quantity}</p>
-            <button
-              aria-label="Remove ingredient"
-              onClick={() =>
-                removeIngredient({
-                  ...ingredient,
-                  quantity: 1,
-                })
-              }
-            >
-              -
-            </button>
-          </li>
+          <SelectedIngredientItem
+            key={ingredient.ingredient.id}
+            addIngredient={addIngredient}
+            removeIngredient={removeIngredient}
+            ingredient={ingredient}
+          />
         ))}
       </ul>
     </div>

@@ -32,7 +32,9 @@ export const TrackingPage: FC = () => {
   }
   return (
     <div>
-      <div>{JSON.stringify(order)}</div>
+      <div>
+        <h1>Your order:</h1>
+      </div>
       <div className="flex gap-5">
         <button
           onClick={() => {

@@ -17,5 +17,6 @@ export const useIsAuth = () => {
   return {
     user,
     loading,
+    error,
   };
 };

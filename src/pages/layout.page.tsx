@@ -6,7 +6,7 @@ import { auth, onMessageListener } from '../libs/firebase';
 import { Notification } from '../components/notification.component';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { User } from 'firebase/auth';
+import { OutletContext } from '../types/interfaces';
 
 export const Layout: FC = () => {
   const [user, loading] = useAuthState(auth);
@@ -29,17 +29,13 @@ export const Layout: FC = () => {
   }
 
   return (
-    <main className="flex flex-col gap-10">
+    <main className="bg-silver flex h-[100vh] flex-col gap-10">
       <Header />
       <Outlet context={{ user }} />
       <ToastContainer position="bottom-right" />
     </main>
   );
 };
-
-interface OutletContext {
-  user: User;
-}
 
 export const getUser = () => {
   const { user } = useOutletContext<OutletContext>();

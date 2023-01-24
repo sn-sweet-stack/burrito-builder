@@ -1,18 +1,7 @@
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import { collection, doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
 import { useFirestore } from '../libs/firebase';
-import { Ingredient } from '../pages/burrito.page';
-
-export interface BurritoIngredient {
-  ingredient: Ingredient;
-  quantity: number;
-}
-
-export interface Burrito {
-  name: string;
-  ingredients: BurritoIngredient[];
-  price: number;
-}
+import { Burrito, BurritoIngredient } from '../types/interfaces';
 
 export const useBurrito = () => {
   const storage = useFirestore();
