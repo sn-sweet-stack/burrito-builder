@@ -1,4 +1,4 @@
-import { User, UserCredential } from 'firebase/auth';
+import { UserCredential } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';

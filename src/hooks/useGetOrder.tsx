@@ -9,6 +9,7 @@ import { useDocumentData } from 'react-firebase-hooks/firestore';
 import { useHttpsCallable } from 'react-firebase-hooks/functions';
 import { functions, useFirestore } from '../libs/firebase';
 import { getUser } from '../pages/layout.page';
+import { Order } from '../types/interfaces';
 
 export const useGetOrder = () => {
   const [docRef, setDocRef] = useState<DocumentReference<DocumentData> | null>(
@@ -22,15 +23,17 @@ export const useGetOrder = () => {
   useEffect(() => {
     if (user) {
       const storage = useFirestore();
-      setDocRef(doc(collection(storage, 'orders'), user.uid));
+      const document = doc(collection(storage, 'orders'), user.uid);
+      setDocRef(document);
     }
   }, [user]);
   const [order, loading, error] = useDocumentData(docRef);
 
   return {
     changeDeliveryStatus,
-    order,
+    order: order as Order,
     loading,
     error,
+    user,
   };
 };

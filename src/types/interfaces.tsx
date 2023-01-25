@@ -20,3 +20,9 @@ export interface Burrito {
   ingredients: BurritoIngredient[];
   price: number;
 }
+
+export interface Order {
+  burrito: Burrito;
+  status: string;
+  userId: string;
+}
