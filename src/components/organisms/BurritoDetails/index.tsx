@@ -1,12 +1,12 @@
 import { FC } from 'react';
-import { Burrito } from '../types/interfaces';
-import { IngredientDetails } from './ingredient-details.component';
+import { Burrito } from '../../../types/interfaces';
+import IngredientDetails from '../../molecules/IngredientDetails';
 
 interface Props {
   burrito: Burrito;
 }
 
-export const BurritoDetails: FC<Props> = ({ burrito }) => {
+const BurritoDetails: FC<Props> = ({ burrito }) => {
   const { name, ingredients, price } = burrito;
   return (
     <article className="mx-12 mb-24 flex flex-col items-center gap-5">
@@ -30,3 +30,5 @@ export const BurritoDetails: FC<Props> = ({ burrito }) => {
     </article>
   );
 };
+
+export default BurritoDetails;

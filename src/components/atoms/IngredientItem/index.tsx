@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { BurritoIngredient, Ingredient } from '../types/interfaces';
+import { BurritoIngredient, Ingredient } from '../../../types/interfaces';
 
 interface Props {
   ingredient: Ingredient;

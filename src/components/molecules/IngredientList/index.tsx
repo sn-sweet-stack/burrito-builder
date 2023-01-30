@@ -1,13 +1,13 @@
 import { FC } from 'react';
-import { Ingredient, BurritoIngredient } from '../types/interfaces';
-import IngredientItem from './ingredient-item.component';
+import { Ingredient, BurritoIngredient } from '../../../types/interfaces';
+import IngredientItem from '../../atoms/IngredientItem';
 
 interface Props {
   ingredients: Ingredient[];
   addIngredient: (ingredient: BurritoIngredient) => void;
 }
 
-export const IngredientList: FC<Props> = ({ ingredients, addIngredient }) => {
+const IngredientList: FC<Props> = ({ ingredients, addIngredient }) => {
   return (
     <ul className="flex max-w-[600px] flex-wrap gap-3">
       {ingredients.map((ingredient) => (
@@ -21,3 +21,5 @@ export const IngredientList: FC<Props> = ({ ingredients, addIngredient }) => {
     </ul>
   );
 };
+
+export default IngredientList;

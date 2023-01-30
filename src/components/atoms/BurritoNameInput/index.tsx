@@ -4,7 +4,7 @@ interface Props {
   setBurritoName: (name: string) => void;
 }
 
-export const BurritoNameInput: FC<Props> = ({ setBurritoName }) => {
+const BurritoNameInput: FC<Props> = ({ setBurritoName }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleEnterPress = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -22,3 +22,5 @@ export const BurritoNameInput: FC<Props> = ({ setBurritoName }) => {
     />
   );
 };
+
+export default BurritoNameInput;

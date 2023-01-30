@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import { BurritoIngredient } from '../types/interfaces';
+import { BurritoIngredient } from '../../../types/interfaces';
 
 interface Props {
   burritoIngredient: BurritoIngredient;
 }
 
-export const IngredientDetails: FC<Props> = ({ burritoIngredient }) => {
+const IngredientDetails: FC<Props> = ({ burritoIngredient }) => {
   const { ingredient, quantity } = burritoIngredient;
   return (
     <li className="mx-12 flex items-center">
@@ -23,3 +23,5 @@ export const IngredientDetails: FC<Props> = ({ burritoIngredient }) => {
     </li>
   );
 };
+
+export default IngredientDetails;

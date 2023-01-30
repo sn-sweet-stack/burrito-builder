@@ -12,7 +12,7 @@ const STATUS_WIDTH = {
   Completed: 600,
 };
 
-export const OrderStatusBar: FC<Props> = ({ status }) => {
+const OrderStatusBar: FC<Props> = ({ status }) => {
   const width = STATUS_WIDTH[status];
   return (
     <div className="flex flex-col items-center">
@@ -60,3 +60,5 @@ export const OrderStatusBar: FC<Props> = ({ status }) => {
     </div>
   );
 };
+
+export default OrderStatusBar;

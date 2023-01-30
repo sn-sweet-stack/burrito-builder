@@ -6,7 +6,7 @@ interface Notif extends ToastContentProps {
   body: string;
 }
 
-export const Notification: FC<Partial<Notif>> = ({ title, body }) => {
+const Notification: FC<Partial<Notif>> = ({ title, body }) => {
   return (
     <div>
       <h1>{title}</h1>
@@ -14,3 +14,5 @@ export const Notification: FC<Partial<Notif>> = ({ title, body }) => {
     </div>
   );
 };
+
+export default Notification;

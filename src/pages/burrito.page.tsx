@@ -1,8 +1,7 @@
+import IngredientList from '../components/molecules/IngredientList';
+import BurritoInfo from '../components/organisms/BurritoInfo';
 import { useBurrito } from '../hooks/useBurito';
 import { useIngredients } from '../hooks/useIngredients';
-
-import { BurritoInfo } from '../components/burrito-info.component';
-import { IngredientList } from '../components/ingredient-list.component';
 
 import { getUser } from './layout.page';
 

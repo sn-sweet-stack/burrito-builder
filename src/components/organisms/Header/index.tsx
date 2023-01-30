@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import SignOutButton from './Auth/sign-out-button.component';
+import SignOutButton from '../../atoms/SignOutButton';
 
-export const Header = () => {
+const Header = () => {
   return (
     <header className="flex h-24 w-full items-center justify-between bg-amber-500 px-5">
       <div>
@@ -23,3 +23,5 @@ export const Header = () => {
     </header>
   );
 };
+
+export default Header;

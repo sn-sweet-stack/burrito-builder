@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { toast } from 'react-toastify';
-import { useSignIn } from '../../hooks/useSignIn';
+import { useSignIn } from '../../../hooks/useSignIn';
 
 const SignInButton: FC = () => {
   const { signInWithGoogle, loading, error } = useSignIn('/burrito');

@@ -1,10 +1,8 @@
-import { useBurritoCheckout } from '../hooks/useBurritoCheckout';
-import { BurritoDetails } from './burrito-details.component';
+import { useBurritoCheckout } from '../../../hooks/useBurritoCheckout';
+import BurritoDetails from '../BurritoDetails';
 
 const BurritoCheckout = () => {
   const { burrito, proceedToCheckout } = useBurritoCheckout();
-
-
 
   return (
     <section className="flex flex-col">

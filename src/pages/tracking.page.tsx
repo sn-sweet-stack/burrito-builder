@@ -1,13 +1,19 @@
 import { FC, useState } from 'react';
-import { BurritoDetails } from '../components/burrito-details.component';
-import { OrderStatusBar } from '../components/order-status-bar.component';
+import { toast } from 'react-toastify';
+import BurritoDetails from '../components/organisms/BurritoDetails';
+import OrderStatusBar from '../components/organisms/OrderStatusBar';
 import { useGetOrder } from '../hooks/useGetOrder';
 
+type Status = 'Pending' | 'Paid' | 'Delivering' | 'Completed';
+
 export const TrackingPage: FC = () => {
-  const [toogle, setToogle] = useState(false);
   const { changeDeliveryStatus, order, loading, error, user } = useGetOrder();
   if (!user || loading) {
     return <p>Loading</p>;
+  }
+
+  if (error) {
+    toast.error('Something wrong happened!');
   }
 
   return (
@@ -17,7 +23,7 @@ export const TrackingPage: FC = () => {
         <div>{order && <BurritoDetails burrito={order.burrito} />}</div>
       </div>
       <div className="mb-3">
-        {order && <OrderStatusBar status={order.status} />}
+        {order && <OrderStatusBar status={order.status as Status} />}
       </div>
       <div className="flex justify-center gap-5">
         <button
@@ -42,13 +48,6 @@ export const TrackingPage: FC = () => {
           Completed
         </button>
       </div>
-      <button
-        onClick={() => {
-          setToogle(!toogle);
-        }}
-      >
-        {toogle ? 'true' : 'false'}
-      </button>
     </div>
   );
 };

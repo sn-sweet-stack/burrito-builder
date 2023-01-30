@@ -1,4 +1,4 @@
-import SignInButton from '../components/Auth/sign-in-button.component';
+import SignInButton from '../components/atoms/SignInButton';
 import burritoImg from '../assets/burrito.png';
 
 const LoginPage = () => {

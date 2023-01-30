@@ -1,10 +1,11 @@
 import { FC } from 'react';
-import { BurritoNameInput } from './burito-name-input.component';
 import { User } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { SelectedIngredeintsList } from './selected-ingredient-list.component';
 import { toast } from 'react-toastify';
-import { Burrito, BurritoIngredient } from '../types/interfaces';
+import { Burrito, BurritoIngredient } from '../../../types/interfaces';
+
+import BurritoNameInput from '../../atoms/BurritoNameInput';
+import SelectedIngredeintsList from '../../molecules/SelectedIngredientList';
 
 interface Props {
   burrito: Burrito;
@@ -16,7 +17,7 @@ interface Props {
   user: User | null | undefined;
 }
 
-export const BurritoInfo: FC<Props> = ({
+const BurritoInfo: FC<Props> = ({
   burrito,
   removeIngredient,
   addIngredient,
@@ -80,3 +81,5 @@ export const BurritoInfo: FC<Props> = ({
     </div>
   );
 };
+
+export default BurritoInfo;

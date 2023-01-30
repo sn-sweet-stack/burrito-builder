@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { BurritoIngredient } from '../types/interfaces';
+import { BurritoIngredient } from '../../../types/interfaces';
 
 interface Props {
   ingredient: BurritoIngredient;
@@ -7,7 +7,7 @@ interface Props {
   addIngredient: (Ingredient: BurritoIngredient) => void;
 }
 
-export const SelectedIngredientItem: FC<Props> = ({
+const SelectedIngredientItem: FC<Props> = ({
   ingredient,
   addIngredient,
   removeIngredient,
@@ -45,3 +45,5 @@ export const SelectedIngredientItem: FC<Props> = ({
     </button>
   </li>
 );
+
+export default SelectedIngredientItem;

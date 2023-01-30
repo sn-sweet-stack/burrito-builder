@@ -1,8 +1,7 @@
 import { FC } from 'react';
 
-import { Burrito, BurritoIngredient } from '../types/interfaces';
-
-import { SelectedIngredientItem } from './selected-ingredient-item.component';
+import { Burrito, BurritoIngredient } from '../../../types/interfaces';
+import SelectedIngredientItem from '../../atoms/SelectIngredientItem/selected-ingredient-item.component';
 
 interface Props {
   burrito: Burrito;
@@ -10,7 +9,7 @@ interface Props {
   addIngredient: (Ingredient: BurritoIngredient) => void;
 }
 
-export const SelectedIngredeintsList: FC<Props> = ({
+const SelectedIngredeintsList: FC<Props> = ({
   burrito,
   addIngredient,
   removeIngredient,
@@ -28,3 +27,5 @@ export const SelectedIngredeintsList: FC<Props> = ({
     </ul>
   );
 };
+
+export default SelectedIngredeintsList;
