@@ -1,11 +1,6 @@
-import { useEffect, useState } from 'react';
 import Stripe from 'stripe';
 import { createCheckoutSession } from '@stripe/firestore-stripe-payments';
-import {
-  collection,
-  CollectionReference,
-  DocumentData,
-} from 'firebase/firestore';
+import { collection } from 'firebase/firestore';
 import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
 import { useHttpsCallable } from 'react-firebase-hooks/functions';
 import { toast } from 'react-toastify';
@@ -60,5 +55,6 @@ export const useBurritoCheckout = () => {
     user,
     burrito,
     proceedToCheckout,
+    isLoading: loading,
   };
 };

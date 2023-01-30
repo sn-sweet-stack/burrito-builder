@@ -2,11 +2,13 @@ import { FC, useEffect, useState } from 'react';
 import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { auth, onMessageListener } from '../libs/firebase';
-import Notification from '../components/atoms/Notification';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { OutletContext } from '../types/interfaces';
-import 'react-toastify/dist/ReactToastify.css';
+
 import Header from '../components/organisms/Header';
+import Notification from '../components/atoms/Notification';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Layout: FC = () => {
   const navigate = useNavigate();

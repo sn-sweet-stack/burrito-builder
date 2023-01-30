@@ -7,14 +7,12 @@ import {
   onMessage,
 } from 'firebase/messaging';
 import {
-  Auth,
   browserSessionPersistence,
   getAuth,
   setPersistence,
 } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getFunctions } from 'firebase/functions';
-import { Payload } from '../hooks/useNotification';
 
 const firebaseApp = initializeApp({
   apiKey: import.meta.env.VITE_FIREBASE_APIKEY,

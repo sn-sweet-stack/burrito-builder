@@ -22,10 +22,6 @@ export const router = createBrowserRouter([
       {
         path: '/checkout',
         element: <CheckoutPage />,
-        loader: () => {
-          const user = auth.currentUser;
-          return user;
-        },
       },
       {
         path: '/tracking',

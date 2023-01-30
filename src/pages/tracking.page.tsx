@@ -1,8 +1,9 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { toast } from 'react-toastify';
+import { useGetOrder } from '../hooks/useGetOrder';
+
 import BurritoDetails from '../components/organisms/BurritoDetails';
 import OrderStatusBar from '../components/organisms/OrderStatusBar';
-import { useGetOrder } from '../hooks/useGetOrder';
 
 type Status = 'Pending' | 'Paid' | 'Delivering' | 'Completed';
 

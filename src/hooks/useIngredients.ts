@@ -13,7 +13,7 @@ export const useIngredients = () => {
 
   return {
     ingredients: value,
-    loading,
+    isLoading: loading,
     error,
   };
 };

@@ -1,12 +1,13 @@
-import IngredientList from '../components/molecules/IngredientList';
-import BurritoInfo from '../components/organisms/BurritoInfo';
 import { useBurrito } from '../hooks/useBurito';
 import { useIngredients } from '../hooks/useIngredients';
+
+import IngredientList from '../components/molecules/IngredientList';
+import BurritoInfo from '../components/organisms/BurritoInfo';
 
 import { getUser } from './layout.page';
 
 const BurritoPage = () => {
-  const { ingredients, loading, error } = useIngredients();
+  const { ingredients, isLoading, error } = useIngredients();
   const {
     burrito,
     setBurritoName,
@@ -16,7 +17,8 @@ const BurritoPage = () => {
     submitBurrito,
   } = useBurrito();
   const user = getUser();
-  if (loading) {
+
+  if (isLoading) {
     return <h1>Loading</h1>;
   }
 

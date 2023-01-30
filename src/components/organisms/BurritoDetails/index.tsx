@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Burrito } from '../../../types/interfaces';
+
 import IngredientDetails from '../../molecules/IngredientDetails';
 
 interface Props {
@@ -12,6 +13,7 @@ const BurritoDetails: FC<Props> = ({ burrito }) => {
     <article className="mx-12 mb-24 flex flex-col items-center gap-5">
       <div className="relative inline-block w-48">
         <h1 className="text-4xl font-extrabold tracking-widest">{name}</h1>
+
         <p className="absolute -top-3 -right-14 rotate-12 rounded-full bg-orange-500 p-1 text-xl font-bold text-white">
           {price + '$'}
         </p>

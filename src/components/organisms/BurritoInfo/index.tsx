@@ -30,17 +30,16 @@ const BurritoInfo: FC<Props> = ({
   const handleBurritoSubmit = () => {
     if (!burrito.name) {
       toast.error('Name is required');
-      return;
+    } else {
+      if (!user) {
+        toast.error('Authentification error!');
+        navigate('/');
+      } else {
+        submitBurrito(burrito, user.uid);
+        resetBurrito();
+        navigate('/checkout');
+      }
     }
-    if (!user) {
-      toast.error('Authentification error!');
-      navigate('/');
-    }
-    if (user) {
-      submitBurrito(burrito, user.uid);
-    }
-    resetBurrito();
-    navigate('/checkout');
   };
 
   return (
