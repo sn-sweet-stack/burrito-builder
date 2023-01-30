@@ -2,22 +2,18 @@ import { motion } from 'framer-motion';
 import { FC } from 'react';
 
 interface Props {
-  status: string;
+  status: 'Pending' | 'Paid' | 'Delivering' | 'Completed';
 }
 
-const width = {
+const STATUS_WIDTH = {
   Pending: 20,
   Paid: 150,
   Delivering: 300,
   Completed: 600,
 };
 
-const getWidth = (status: keyof typeof width) => {
-  return width[status] as number;
-};
-
 export const OrderStatusBar: FC<Props> = ({ status }) => {
-  const w = getWidth(status);
+  const width = STATUS_WIDTH[status];
   return (
     <div className="flex flex-col items-center">
       <div className="h-[40px] w-[600px] overflow-hidden rounded-full border border-white bg-white">
@@ -27,7 +23,7 @@ export const OrderStatusBar: FC<Props> = ({ status }) => {
             width: 1,
           }}
           animate={{
-            width: w,
+            width,
             borderTopRightRadius: [
               '10px 15px',
               '20px 24px',

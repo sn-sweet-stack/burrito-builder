@@ -19,6 +19,7 @@ const IngredientItem: FC<Props> = ({ ingredient, addIngredient }) => {
       aria-label="Add ingredient"
     >
       <h1>{ingredient.name}</h1>
+
       <p>{ingredient.price + '$'}</p>
     </button>
   );

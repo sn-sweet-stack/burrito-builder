@@ -1,10 +1,14 @@
+import { useEffect, useState } from 'react';
 import { UserCredential } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useToken } from 'react-firebase-hooks/messaging';
 import { useNavigate } from 'react-router-dom';
+
 import { auth, messaging, useFirestore } from '../libs/firebase';
+
+const PUBLIC_TOKEN =
+  'BArzvbb7biSDqwBdBYwAuV6BB3tomAVrf1wzkEOHcaC8mROZsD5tDLlPs7dlmIDoKRqCkYlIHboiKlP49bDjWXc';
 
 export const useSignIn = (path: string) => {
   const navigate = useNavigate();
@@ -15,10 +19,7 @@ export const useSignIn = (path: string) => {
   const [signInWithGoogle, credential, signInLoading, signInError] =
     useSignInWithGoogle(auth);
 
-  const [token, tokenLoading, tokenError] = useToken(
-    messaging,
-    'BArzvbb7biSDqwBdBYwAuV6BB3tomAVrf1wzkEOHcaC8mROZsD5tDLlPs7dlmIDoKRqCkYlIHboiKlP49bDjWXc'
-  );
+  const [token, tokenLoading, tokenError] = useToken(messaging, PUBLIC_TOKEN);
 
   useEffect(() => {
     const db = useFirestore();
@@ -37,6 +38,8 @@ export const useSignIn = (path: string) => {
   useEffect(() => {
     if (tokenError || signInError) {
       setError(signInError || tokenError);
+      console.log(tokenError);
+      console.log(signInError);
     }
     if (tokenLoading || signInLoading) {
       setLoading(true);

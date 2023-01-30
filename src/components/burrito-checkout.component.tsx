@@ -2,11 +2,9 @@ import { useBurritoCheckout } from '../hooks/useBurritoCheckout';
 import { BurritoDetails } from './burrito-details.component';
 
 const BurritoCheckout = () => {
-  const { burrito, userLoading, proceedToCheckout } = useBurritoCheckout();
+  const { burrito, proceedToCheckout } = useBurritoCheckout();
 
-  if (userLoading) {
-    return <p>Loading</p>;
-  }
+
 
   return (
     <section className="flex flex-col">

@@ -69,15 +69,14 @@ export const BurritoInfo: FC<Props> = ({
       <p className="font-outline-1 text-shadow absolute right-12 bottom-0 -rotate-12 font-mono text-4xl font-bold tracking-wide text-white">
         {`Total: ${burrito.price.toFixed(2)}$`}
       </p>
-      <div>
-        {!!burrito.ingredients.length && (
-          <SelectedIngredeintsList
-            burrito={burrito}
-            addIngredient={addIngredient}
-            removeIngredient={removeIngredient}
-          />
-        )}
-      </div>
+
+      {burrito.ingredients.length > 0 && (
+        <SelectedIngredeintsList
+          burrito={burrito}
+          addIngredient={addIngredient}
+          removeIngredient={removeIngredient}
+        />
+      )}
     </div>
   );
 };

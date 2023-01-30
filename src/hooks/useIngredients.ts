@@ -1,6 +1,7 @@
 import { collection } from 'firebase/firestore';
-import { useFirestore } from '../libs/firebase';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+
+import { useFirestore } from '../libs/firebase';
 import { ingredientsConverter } from '../libs/dataConverter';
 
 export const useIngredients = () => {

@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { BurritoDetails } from '../components/burrito-details.component';
 import { OrderStatusBar } from '../components/order-status-bar.component';
 import { useGetOrder } from '../hooks/useGetOrder';
 
 export const TrackingPage: FC = () => {
+  const [toogle, setToogle] = useState(false);
   const { changeDeliveryStatus, order, loading, error, user } = useGetOrder();
-
   if (!user || loading) {
     return <p>Loading</p>;
   }
@@ -42,6 +42,13 @@ export const TrackingPage: FC = () => {
           Completed
         </button>
       </div>
+      <button
+        onClick={() => {
+          setToogle(!toogle);
+        }}
+      >
+        {toogle ? 'true' : 'false'}
+      </button>
     </div>
   );
 };

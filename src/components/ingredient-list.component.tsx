@@ -21,5 +21,3 @@ export const IngredientList: FC<Props> = ({ ingredients, addIngredient }) => {
     </ul>
   );
 };
-
-export default IngredientList;

@@ -26,3 +26,7 @@ export interface Order {
   status: string;
   userId: string;
 }
+
+export interface Data {
+  burrito: Burrito;
+}

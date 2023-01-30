@@ -1,5 +1,6 @@
-import { collection, doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
+import { collection, doc, setDoc } from 'firebase/firestore';
+
 import { useFirestore } from '../libs/firebase';
 import { Burrito, BurritoIngredient } from '../types/interfaces';
 
@@ -12,8 +13,9 @@ export const useBurrito = () => {
   });
 
   const addIngredient = (burritoIngredient: BurritoIngredient) => {
+    const burritoIngredientName = burritoIngredient.ingredient.name
     const selectedIngredient = burrito.ingredients.find(
-      (ingr) => ingr.ingredient.name === burritoIngredient.ingredient.name
+      ({ ingredient }) => ingredient.name === burritoIngredientName
     );
 
     if (selectedIngredient) {
@@ -32,7 +34,7 @@ export const useBurrito = () => {
         name: prevState.name,
         ingredients: updatedIngredientList,
         price: updatedIngredientList.reduce(
-          (acc, nextIng) => acc + nextIng.ingredient.price * nextIng.quantity,
+          (acc, { ingredient, quantity}) => acc + ingredient.price * quantity,
           0
         ),
       }));
@@ -50,37 +52,41 @@ export const useBurrito = () => {
     const selectedIngredient = burrito.ingredients.find(
       (ingr) => ingr.ingredient.name === ingredient.ingredient.name
     );
+    
     if (selectedIngredient) {
       const updatedIngredientList =
         selectedIngredient.quantity > 1
-          ? burrito.ingredients.map((ingr) => {
-              if (ingr.ingredient.id === selectedIngredient.ingredient.id) {
+          ? burrito.ingredients.map(({ ingredient, quantity }) => {
+              if (ingredient.id === selectedIngredient.ingredient.id) {
                 return {
-                  ingredient: ingr.ingredient,
-                  quantity: ingr.quantity - 1,
+                  ingredient: ingredient,
+                  quantity: quantity - 1,
                 };
               }
-              return ingr;
+              return { ingredient, quantity } as BurritoIngredient;
             })
           : burrito.ingredients.filter(
               (ingr) => ingr.ingredient.id !== selectedIngredient.ingredient.id
             );
+            
       const price = updatedIngredientList.reduce(
-        (acc, nextIng) => acc + nextIng.ingredient.price * nextIng.quantity,
+        (acc, { ingredient, quantity }) => acc + ingredient.price * quantity,
         0
       );
+      
       setBurrito((prevState) => ({
-        name: prevState.name,
+        ...prevState,
         ingredients: updatedIngredientList,
         price,
       }));
     }
   };
+  
   const setBurritoName = (name: string) => {
-    setBurrito({
-      ...burrito,
+    setBurrito((prevState) => ({
+      ...prevState,
       name,
-    });
+    }));
   };
 
   const resetBurrito = () => {

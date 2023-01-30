@@ -1,25 +1,29 @@
+import { useEffect, useState } from 'react';
+import Stripe from 'stripe';
 import { createCheckoutSession } from '@stripe/firestore-stripe-payments';
 import {
   collection,
   CollectionReference,
   DocumentData,
 } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
-
 import { useCollectionDataOnce } from 'react-firebase-hooks/firestore';
 import { useHttpsCallable } from 'react-firebase-hooks/functions';
 import { toast } from 'react-toastify';
-import Stripe from 'stripe';
-import { Data } from '../cloud-functions/functions';
+
 import { functions, payments, useFirestore } from '../libs/firebase';
-import { Burrito } from '../types/interfaces';
-import { useIsAuth } from './useIsAuth';
+import { Burrito, Data } from '../types/interfaces';
+import { getUser } from '../pages/layout.page';
 
 export const useBurritoCheckout = () => {
-  const [burritoCollection, setBurritoCollection] =
-    useState<CollectionReference<DocumentData> | null>(null);
-  const { user, loading: userLoading } = useIsAuth();
   const storage = useFirestore();
+
+  const user = getUser();
+  const burritoCollection = collection(
+    storage,
+    'users',
+    user!.uid,
+    'submitedBurrito'
+  );
   const [list, loading, error] = useCollectionDataOnce(burritoCollection);
   const [executeCallable] = useHttpsCallable<Data, Stripe.Product>(
     functions,
@@ -52,13 +56,9 @@ export const useBurritoCheckout = () => {
     }
   };
 
-  useEffect(() => {
-    if (user) {
-      setBurritoCollection(
-        collection(storage, 'users', user!.uid, 'submitedBurrito')
-      );
-    }
-  }, [user]);
-
-  return { user, burrito, userLoading, proceedToCheckout };
+  return {
+    user,
+    burrito,
+    proceedToCheckout,
+  };
 };

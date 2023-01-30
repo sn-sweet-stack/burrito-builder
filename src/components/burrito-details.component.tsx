@@ -16,6 +16,7 @@ export const BurritoDetails: FC<Props> = ({ burrito }) => {
           {price + '$'}
         </p>
       </div>
+
       <div>
         <ul className="flex flex-col gap-3">
           {ingredients.map((ingredient) => (

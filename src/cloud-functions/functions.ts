@@ -1,11 +1,8 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import Stripe from 'stripe';
-import { Burrito } from '../hooks/useBurito';
 
-export interface Data {
-  burrito: Burrito;
-}
+
 
 const stripe = new Stripe('API_KEY', {
   apiVersion: '2022-11-15',
