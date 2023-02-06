@@ -1,5 +1,4 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { auth } from '../libs/firebase';
 import BurritoPage from '../pages/burrito.page';
 import { CheckoutPage } from '../pages/checkout.page';
 import { Layout } from '../pages/layout.page';

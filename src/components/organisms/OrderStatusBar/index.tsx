@@ -51,10 +51,14 @@ const OrderStatusBar: FC<Props> = ({ status }) => {
           }}
         ></motion.div>
       </div>
+
       <div className="relative flex w-[600px] text-xl font-light">
         <p>Pending</p>
+
         <p className="relative left-[55px]">Paid</p>
+
         <p className="relative left-[150px]">Delivering</p>
+
         <p className="relative left-[310px]">Completed</p>
       </div>
     </div>

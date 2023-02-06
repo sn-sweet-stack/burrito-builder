@@ -4,6 +4,7 @@ import { useSignIn } from '../../../hooks/useSignIn';
 
 const SignInButton: FC = () => {
   const { signInWithGoogle, loading, error } = useSignIn('/burrito');
+
   if (loading) {
     return (
       <p className="self-center border border-orange-500 p-3 text-2xl font-light uppercase tracking-wide shadow-[5px_5px_rgba(249,_115,_22,_0.4),_10px_10px_rgba(249,_115,_22,_0.3),_15px_15px_rgba(249,_115,_22,_0.2),_20px_20px_rgba(249,_115,_22,_0.1),_25px_25px_rgba(249,_115,_22,_0.05)] transition duration-500 hover:shadow-none">
@@ -11,9 +12,11 @@ const SignInButton: FC = () => {
       </p>
     );
   }
+
   if (error) {
     toast('Something wrong happened!');
   }
+
   return (
     <div>
       <button

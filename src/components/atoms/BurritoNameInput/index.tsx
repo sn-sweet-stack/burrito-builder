@@ -10,7 +10,6 @@ const BurritoNameInput: FC<Props> = ({ setBurritoName }) => {
   const handleEnterPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter' && inputRef.current) {
       setBurritoName(inputRef.current.value);
-      console.log(inputRef.current.value);
     }
   };
   return (

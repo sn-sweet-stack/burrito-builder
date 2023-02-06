@@ -13,7 +13,7 @@ interface Props {
   addIngredient: (Ingredient: BurritoIngredient) => void;
   setBurritoName: (name: string) => void;
   submitBurrito: (burrito: Burrito, userId: string) => Promise<void>;
-  resetBurrito: () => void;
+  resetBurritoForm: () => void;
   user: User | null | undefined;
 }
 
@@ -23,10 +23,11 @@ const BurritoInfo: FC<Props> = ({
   addIngredient,
   setBurritoName,
   submitBurrito,
-  resetBurrito,
+  resetBurritoForm,
   user,
 }) => {
   const navigate = useNavigate();
+
   const handleBurritoSubmit = () => {
     if (!burrito.name) {
       toast.error('Name is required');
@@ -36,7 +37,7 @@ const BurritoInfo: FC<Props> = ({
         navigate('/');
       } else {
         submitBurrito(burrito, user.uid);
-        resetBurrito();
+        resetBurritoForm();
         navigate('/checkout');
       }
     }

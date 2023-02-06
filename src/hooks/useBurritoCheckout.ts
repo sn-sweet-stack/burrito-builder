@@ -46,7 +46,6 @@ export const useBurritoCheckout = () => {
         }
       }
     } catch (error) {
-      console.log(error);
       toast.error('Something wrong happened');
     }
   };

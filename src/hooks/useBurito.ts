@@ -13,7 +13,7 @@ export const useBurrito = () => {
   });
 
   const addIngredient = (burritoIngredient: BurritoIngredient) => {
-    const burritoIngredientName = burritoIngredient.ingredient.name
+    const burritoIngredientName = burritoIngredient.ingredient.name;
     const selectedIngredient = burrito.ingredients.find(
       ({ ingredient }) => ingredient.name === burritoIngredientName
     );
@@ -23,6 +23,7 @@ export const useBurrito = () => {
         ...selectedIngredient,
         quantity: selectedIngredient.quantity + 1,
       };
+
       const updatedIngredientList = burrito.ingredients.map((ingr) => {
         if (ingr.ingredient.id === updatedIngredient.ingredient.id) {
           return updatedIngredient;
@@ -31,17 +32,17 @@ export const useBurrito = () => {
       });
 
       setBurrito((prevState) => ({
-        name: prevState.name,
+        ...prevState,
         ingredients: updatedIngredientList,
         price: updatedIngredientList.reduce(
-          (acc, { ingredient, quantity}) => acc + ingredient.price * quantity,
+          (acc, { ingredient, quantity }) => acc + ingredient.price * quantity,
           0
         ),
       }));
       return;
     }
     setBurrito((prevState) => ({
-      name: prevState.name,
+      ...prevState,
       ingredients: [...prevState.ingredients, burritoIngredient],
       price: prevState.price + burritoIngredient.ingredient.price,
     }));
@@ -52,7 +53,7 @@ export const useBurrito = () => {
     const selectedIngredient = burrito.ingredients.find(
       (ingr) => ingr.ingredient.name === ingredient.ingredient.name
     );
-    
+
     if (selectedIngredient) {
       const updatedIngredientList =
         selectedIngredient.quantity > 1
@@ -68,12 +69,12 @@ export const useBurrito = () => {
           : burrito.ingredients.filter(
               (ingr) => ingr.ingredient.id !== selectedIngredient.ingredient.id
             );
-            
+
       const price = updatedIngredientList.reduce(
         (acc, { ingredient, quantity }) => acc + ingredient.price * quantity,
         0
       );
-      
+
       setBurrito((prevState) => ({
         ...prevState,
         ingredients: updatedIngredientList,
@@ -81,7 +82,7 @@ export const useBurrito = () => {
       }));
     }
   };
-  
+
   const setBurritoName = (name: string) => {
     setBurrito((prevState) => ({
       ...prevState,
@@ -89,7 +90,7 @@ export const useBurrito = () => {
     }));
   };
 
-  const resetBurrito = () => {
+  const resetBurritoForm = () => {
     setBurrito({
       name: '',
       ingredients: [],
@@ -114,7 +115,7 @@ export const useBurrito = () => {
     setBurritoName,
     addIngredient,
     removeIngredient,
-    resetBurrito,
+    resetBurritoForm,
     submitBurrito,
   };
 };

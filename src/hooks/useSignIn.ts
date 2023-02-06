@@ -7,8 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { auth, messaging, useFirestore } from '../libs/firebase';
 
-const PUBLIC_TOKEN =
-  'BArzvbb7biSDqwBdBYwAuV6BB3tomAVrf1wzkEOHcaC8mROZsD5tDLlPs7dlmIDoKRqCkYlIHboiKlP49bDjWXc';
+const PUBLIC_TOKEN = 'API_KEY';
 
 export const useSignIn = (path: string) => {
   const navigate = useNavigate();
@@ -41,10 +40,12 @@ export const useSignIn = (path: string) => {
       console.log(tokenError);
       console.log(signInError);
     }
+
     if (tokenLoading || signInLoading) {
       setLoading(true);
       return;
     }
+
     setLoading(false);
   }, [tokenError, signInError, tokenLoading, signInLoading]);
   return {

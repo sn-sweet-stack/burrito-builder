@@ -35,7 +35,6 @@ getToken(messaging, {
 export const onMessageListener = () =>
   new Promise<MessagePayload>((resolve) => {
     onMessage(messaging, (payload) => {
-      console.log('payload', payload);
       resolve(payload);
     });
   });

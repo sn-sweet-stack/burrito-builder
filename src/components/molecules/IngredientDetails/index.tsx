@@ -7,6 +7,7 @@ interface Props {
 
 const IngredientDetails: FC<Props> = ({ burritoIngredient }) => {
   const { ingredient, quantity } = burritoIngredient;
+
   return (
     <li className="mx-12 flex items-center">
       <div className="flex gap-2 p-2">

@@ -9,7 +9,7 @@ interface Props {
   addIngredient: (Ingredient: BurritoIngredient) => void;
 }
 
-const SelectedIngredeintsList: FC<Props> = ({
+const SelectedIngredientsList: FC<Props> = ({
   burrito,
   addIngredient,
   removeIngredient,
@@ -28,4 +28,4 @@ const SelectedIngredeintsList: FC<Props> = ({
   );
 };
 
-export default SelectedIngredeintsList;
+export default SelectedIngredientsList;

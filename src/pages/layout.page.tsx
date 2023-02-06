@@ -11,9 +11,12 @@ import Notification from '../components/atoms/Notification';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const Layout: FC = () => {
-  const navigate = useNavigate();
-  const [user, loading] = useAuthState(auth);
   const [notification, setNotification] = useState({ title: '', body: '' });
+
+  const navigate = useNavigate();
+
+  const [user, loading] = useAuthState(auth);
+
   const notify = (title: string, body: string) =>
     toast(<Notification title={title} body={body} />);
 

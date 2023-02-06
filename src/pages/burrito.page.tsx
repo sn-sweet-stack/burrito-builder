@@ -13,7 +13,7 @@ const BurritoPage = () => {
     setBurritoName,
     addIngredient,
     removeIngredient,
-    resetBurrito,
+    resetBurritoForm,
     submitBurrito,
   } = useBurrito();
   const user = getUser();
@@ -48,13 +48,14 @@ const BurritoPage = () => {
             <h2 className="text-shadow font-outline-1 mb-10 font-mono text-4xl font-bold tracking-wide text-white">
               Here is your burrito:
             </h2>
+
             <BurritoInfo
               burrito={burrito}
               removeIngredient={removeIngredient}
               addIngredient={addIngredient}
               setBurritoName={setBurritoName}
               submitBurrito={submitBurrito}
-              resetBurrito={resetBurrito}
+              resetBurritoForm={resetBurritoForm}
               user={user}
             />
           </div>

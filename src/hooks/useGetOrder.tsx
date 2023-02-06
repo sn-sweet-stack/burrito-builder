@@ -16,12 +16,14 @@ export const useGetOrder = () => {
   const [docRef, setDocRef] = useState<DocumentReference<DocumentData> | null>(
     null
   );
+
   const user = getUser();
 
   const [changeDeliveryStatus] = useHttpsCallable(
     functions,
     'changeDeliveryStatus'
   );
+
   const [order, loading, error] = useDocumentData(docRef);
 
   useEffect(() => {
